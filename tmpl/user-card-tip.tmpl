@@ -1,0 +1,15 @@
+<img class="avatar" alt="" title="${user.name}" src="${user.pic}" height="50" width="50">
+<a class="multi-panel nickname" data-route="/user/tabs/follow/${user.id}"><strong>${user.sn}{{if user.verified}}<i></i>{{/if}}</strong></a>
+<ul>       
+    <li><a class="multi-panel" data-route="/user/tabs/follow/${user.id}"><em>${user.follows}</em>关注</a></li>
+    <li><a class="multi-panel" data-route="/user/tabs/follow/${user.id}"><em>${user.fans}</em>粉丝</a></li>
+    <li><a class="multi-panel" data-route="/user/tabs/follow/${user.id}"><em>${user.statuses}</em>微博</a></li>
+</ul>
+{{if $data.time}}<p class="time">时间：${time}</p>{{/if}}
+{{if $data.count}}<p>转发量：${count}</p>{{/if}}
+<!--为传播分析转发曲线图提示而写-->
+{{if $data.peak_info}}
+<p>
+    转发时间：${DATE.format($data.peak_info.cr, "MM-dd hh:mm")}
+带来转发量：${$data.peak_info.count}</p>
+{{/if}}

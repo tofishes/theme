@@ -1,0 +1,208 @@
+// 清除浮动
+.clearfix, .pic-txt {
+  &:before,
+  &:after {
+    display: table;
+    content: "\0020";
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.pic-txt {
+  .pic {float:left;margin-right:8px;}
+  .txt {overflow: hidden;}
+}
+
+.hide-text {
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
+}
+.hide {display: none}
+.hidden{ display:none !important; }
+
+// 横向列表 消除元素之间的间隙
+.hor-list {
+  letter-spacing: -0.31em;
+  word-spacing: -0.43em;
+  li,dd{
+    display: inline-block;
+    overflow: visible;
+    vertical-align: top;
+    letter-spacing: normal;
+    word-spacing: normal;
+  }
+}
+
+// 清除行内元素换行会有空格间距
+.inline-spacing {
+  letter-spacing: -0.31em;
+  word-spacing: -0.43em;
+  a,span,button{
+    letter-spacing: normal;
+    word-spacing: normal;
+  }
+}
+
+// Requires inline-block or block for proper styling
+.text-overflow{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+.opacity(@opacity) {
+  opacity: @opacity / 100;
+  filter: ~"alpha(opacity=@{opacity})";
+}
+
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+.box-shadow(@shadowA, @shadowB:X, ...){
+  // Multiple shadow solution from http://toekneestuck.com/blog/2012/05/15/less-css-arguments-variable/
+  @props: ~`"@{arguments}".replace(/[\[\]]|\,\sX/g, '')`;
+  -webkit-box-shadow: @props;
+     -moz-box-shadow: @props;
+          box-shadow: @props;
+}
+
+.drop-shadow(@shadow){
+  -webkit-filter: @shadow;
+  -moz-filter: @shadow;
+  -ms-filter: @shadow;
+  -o-filter: @shadow;
+  filter: @shadow;
+}
+
+.box-sizing(@property){ // box-sizing：content-box | border-box (border padding不占宽高)
+  -ms-box-sizing: @property;
+  -webkit-box-sizing: @property;
+     -moz-box-sizing: @property;
+          box-sizing: @property;
+}
+
+.placeholder {
+  &:-moz-placeholder {
+    color: #d2d2d2;
+  }
+  &:-ms-input-placeholder {
+    color: #d2d2d2;
+  }
+  &::-webkit-input-placeholder {
+    color: #d2d2d2;
+  }
+}
+//渐变
+#gradient {
+  .vertical(@startColor:#f9f9f9, @endColor:#f3f3f3) {
+    background-color: mix(@startColor, @endColor, 60%);
+    background-image: -moz-linear-gradient(top, @startColor, @endColor); // FF 3.6+
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@startColor), to(@endColor)); // Safari 4+, Chrome 2+
+    background-image: -webkit-linear-gradient(top, @startColor, @endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(top, @startColor, @endColor); // Opera 11.10
+    background-image: linear-gradient(to bottom, @startColor, @endColor); // Standard, IE10
+    background-repeat: repeat-x;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@startColor),argb(@endColor))); // IE9 and down
+  }
+  .horizontal(@startColor: #fbfeff, @endColor: #21a9ff) {
+    background-color: @endColor;
+    background-image: -moz-linear-gradient(left, @startColor, @endColor); // FF 3.6+
+    background-image: -webkit-gradient(linear, 0 0, 100% 0, from(@startColor), to(@endColor)); // Safari 4+, Chrome 2+
+    background-image: -webkit-linear-gradient(left, @startColor, @endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(left, @startColor, @endColor); // Opera 11.10
+    background-image: linear-gradient(to right, @startColor, @endColor); // Standard, IE10
+    background-repeat: repeat-x;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(@startColor),argb(@endColor))); // IE9 and down
+  }
+}
+// Transitions
+.transition(@transition) {
+  -webkit-transition: @transition;
+     -moz-transition: @transition;
+       -o-transition: @transition;
+          transition: @transition;
+}
+
+//纯色三角 
+.triangle(@triangleSize){border-width:@triangleSize;font-size:0;border-color:transparent;border-style: solid;}
+  // &.top{border-bottom-color:@triangleColor;}
+  // &.right{border-left-color:@triangleColor;}
+  // &.bottom{border-top-color:@triangleColor;}
+  // &.left{border-right-color:@triangleColor;}
+
+
+.kmarrow{position: relative;
+  &:after,&:before{
+    bottom: -12px;
+    border: solid transparent;
+    content: '\0020';
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+  &:after{
+    border:20px 20px 0 20px;
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #ffffff;
+    border-width: 6px;
+    left: 50%;
+    margin-left: -6px;
+  }
+  &:before{
+    border-color: rgba(217, 217, 217, 0);
+    border-bottom-color: #d9d9d9;
+    border-width: 7px;
+    left: 50%;
+    margin-left: -7px;
+  }
+}
+.number{font-family: arial;font-weight: bold; }
+
+.errordata{ background:url(img/alert.png) no-repeat; color:#ff1e1e; font-size:12px; height:16px; line-height:16px; display:inline-block;  padding-left:23px;}
+
+// @tofishes
+.empty-content {padding:0 !important;min-height:80px; line-height:80px; text-align:center; font-size: 16px; color: #7f7f7f;letter-spacing: 0;
+    span {display:inline-block;vertical-align:middle}
+    a {color: #7f7f7f;
+      em {color:#008AFF;}
+    }
+    a:hover {text-decoration:none}
+}
+.i-warn {display:inline-block;margin-right:10px;width:19px;height:16px; vertical-align: middle;
+    background: url("img/first-came.png") no-repeat 0 -33px;
+}
+.i-help {background-image:url("img/help-ico.png");width:16px;height:16px;vertical-align:sub;margin-left:6px;cursor: help;}
+
+.aloof {margin:20px 0}
+//没有找到列表的提示
+.notTip{
+  margin-top:20px;
+  padding:20px 10px;
+  text-align: center;
+  border:1px solid #d9d9d9;
+  color:#7f7f7f;
+}
+//不可点击
+.disabled{
+  cursor: default;
+  .opacity(50);
+}
+.disabled:hover{
+  cursor: default;
+  .opacity(50);
+}
+#floatTip{
+  text-align: center;
+  p{
+    padding:0;
+  }
+}

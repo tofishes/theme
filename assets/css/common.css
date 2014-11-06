@@ -1,0 +1,206 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd,
+        ul, ol, li, pre, form, fieldset, legend, button, input, textarea,th, td { margin: 0;  padding: 0; }
+input,select {vertical-align:middle;font-size:100%}
+h2 {font-size:18px}
+h3 { font-size:14px; }
+h4,h5,h6 { font-size: 12px; color:#444}
+address, cite, em, dfn{ font-style: normal; }
+ul, ol { list-style: none; }
+fieldset,img,iframe { border: none; }
+table { width:100%; border-collapse: collapse; border-spacing: 0; }
+pre {white-space:pre-wrap !important}
+/* html5 tags */
+article, aside, dialog, footer, header, section, footer, nav, figure {display: block}
+/* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
+html{overflow-y: scroll; }
+body{min-width:1000px;width:auto;background: #b5c0c2 url(img/bg-cloud.png) repeat;
+  font:14px/1.45 "\5FAE\8F6F\96C5\9ED1", tahoma, arial, helvetica, sans-serif;
+  color:#333;word-wrap:break-word;
+  text-shadow: 0 1px 0 white
+}
+/* common tags */
+th, td {padding:6px 5px;text-align:left}
+img {vertical-align:middle}
+input[type=checkbox], input[type=radio]  { padding: 0 } /* for ie9 */
+
+a {
+  text-decoration: none;
+  color: #1d77b4;
+  cursor: pointer;
+}
+a:hover {
+  color: #3e9ee0;
+}
+
+button {
+  padding: 0;
+}
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+  opacity: 0.9;
+  -webkit-appearance: button;
+}
+button:hover {
+  opacity: 1;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+input[type="text"],
+input[type="url"],
+input[type="password"],
+input[type="email"] {
+  border: 1px solid #d2d2d2;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+  -ms-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+input[type="text"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  border: 1px solid #ffa800;
+  outline: 1px solid #ffa800;
+}
+.input-L {
+  padding: 5px 6px;
+  height: 32px;
+}
+.input-M {
+  padding: 4px 6px;
+  height: 28px;
+}
+.input-S {
+  padding: 3px 6px;
+  height: 23px;
+}
+input[type="text"],
+input[type="search"],
+textarea {
+  color: #565656;
+}
+input[type="text"]:-moz-placeholder,
+input[type="search"]:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #d2d2d2;
+}
+input[type="text"]:-ms-input-placeholder,
+input[type="search"]:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #d2d2d2;
+}
+input[type="text"]::-webkit-input-placeholder,
+input[type="search"]::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #d2d2d2;
+}
+input[type="search"] {
+  -ms-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-appearance: textfield;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+input[type="search"]:focus {
+  outline: none;
+}
+input[type="submit"] {
+  border: none;
+}
+textarea {
+  resize: none;
+  border: none;
+  outline: none;
+}
+select {
+  border: 1px solid #d2d2d2;
+  text-align: center;
+  color: #565656;
+}
+input,
+label span {
+  vertical-align: middle;
+}
+.clear:before,
+.pic-txt:before,
+.clear:after,
+.pic-txt:after {
+  display: table;
+  content: "\0020";
+  line-height: 0;
+}
+.clear:after,
+.pic-txt:after {
+  clear: both;
+}
+.pic-txt .pic {
+  float: left;
+  margin-right: 8px;
+}
+.pic-txt .txt {
+  overflow: hidden;
+}
+.hide-text {
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
+}
+.hide {
+  display: none;
+}
+.hidden {
+  display: none !important;
+}
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+[placeholder]:-moz-placeholder {
+  color: #d2d2d2;
+}
+[placeholder]:-ms-input-placeholder {
+  color: #d2d2d2;
+}
+[placeholder]::-webkit-input-placeholder {
+  color: #d2d2d2;
+}
+.number {
+  font-family: arial;
+  font-weight: bold;
+}
+.disabled, .disabled:hover {
+  cursor: default;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.wrap {
+  position: relative;
+  margin:20px auto;
+  width: 1008px;
+  min-height: 600px;
+  background-color: #FFF;
+}
+
+.panel, nav {
+  background: rgba(0,100,100,0.1);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 -1px 0 rgba(255, 255, 255, 0.8), 0 3px 8px rgba(0, 0, 0, 0.5)
+}
+.panel {
+  border-radius: 10px;
+}
+/*common css end*/

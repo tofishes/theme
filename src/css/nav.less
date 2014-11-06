@@ -1,0 +1,67 @@
+#nav{ position:fixed;top:60px; bottom:0; width:200px; min-height:400px; font-family:Microsoft YaHei; z-index:20;border-right:1px solid #dedede;background-color:#f8f8f8;
+	a{color:#4a4a4a;display: block; 
+		&:hover{text-decoration:none;}
+	}
+	li > a{height:50px;line-height:50px;#gradient > .vertical (#fafafa,#f2f2f2);border-bottom:1px solid #dedede; .box-shadow(0 1px 0 0 #FFF inset); padding-left:15px;.transition(background 0.5s ease-out);
+		span{ display: inline-block; margin-left:60px; vertical-align:middle; width:9px; height:9px; background:url(img/nav-arrow.png) no-repeat -8px 0; }
+		&.active span{ background-position:-8px -9px; }
+		&:hover{ background-color:#f1f1f1;}
+	}
+	i{ width:30px; height:30px; margin-right:8px; vertical-align: middle; background-image:url(img/nav.png); background-repeat:no-repeat;}
+	dl{ border-bottom: 1px solid #DEDEDE; padding:15px 30px; display:none;
+		i{ width:20px; height:20px; margin-right:4px; background-image:url(img/sub-nav.png); background-repeat:no-repeat;}
+	}
+	dd{ margin-top:8px;
+		&:first-child{ margin-top:0; }
+	}
+	dd a{height:34px; line-height:34px;text-align:center;
+		&.active,&:hover{.border-radius(3px); margin:0 auto;}
+		&:hover{background-color:#f3f3f3;.box-shadow(0 1px 0 #FFF,0 1px 1px rgba(0,0,0,.1) inset);}
+		&.active{background-color:#efefef;.box-shadow(0 1px 0 #FFF,0 1px 1px rgba(0,0,0,.2) inset);}
+	}
+	dd span{border-left-color:#555555;border-width:5px;vertical-align:5px;margin-right:3px;}
+}
+
+//导航大图标
+#nav-dash i{background-position:-30px 0;}
+#nav-content i{ background-position:-30px -30px; }
+#nav-client i{ background-position:-30px -60px; }
+#nav-data i{ background-position:-30px -90px; }
+#nav-join i{background-position:-30px -120px;}
+#nav-message i{background-position:-30px -150px;}
+
+#nav-message.active {box-shadow:0 1px 1px #be5e00 inset; border-bottom:1px solid #FFA200; color:#FFF;margin-right: -1px; #gradient > .vertical(#ff8a00,#ffa200);
+	i{background-position:0 0; }
+}
+.body-collect ,.body-publish{
+	#nav-content i{ background-position:0 -30px;}
+}
+.body-scrm,.body-rls{
+	#nav-client i{ background-position:0 -60px; }
+}
+.body-report,.body-account,.body-wbm{
+	#nav-data i{ background-position:0 -90px; }
+}
+.body-log,.body-workteam{
+	#nav-join i{background-position:0 -120px;}
+}
+.body-inbox,.body-outbox{
+	#nav-message i{background-position:0 -150px;}
+}
+
+//二级导航小图标
+#nav-collect i{background-position:0 0;}
+#nav-publish i{background-position:0 -20px;}
+
+#nav-monitor i{background-position:0 -40px;}
+#nav-account i{background-position:0 -60px;}
+#nav-report i{background-position:0 -80px;}
+
+#nav-relation i{background-position:0 -120px;}
+#nav-scrm i{background-position:0 -161px;}
+
+#nav-inbox i{background-position:0 -180px;}
+#nav-outbox i{background-position:0 -200px;}
+
+#nav-workteam i{background-position:0 -220px;}
+#nav-log i{background-position:0 -240px;}

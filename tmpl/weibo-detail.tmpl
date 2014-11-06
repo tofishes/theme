@@ -1,0 +1,193 @@
+<!-- 微博面板 -->
+<script id="weibo-detail-tmpl" type="text/x-jquery-tmpl">
+    <div id="weiboPanel">
+        <div id="weiboInfo" class="weiboDetail" data-originalweiboid="{{if rt}}${rt.mid}{{else}}${mid}{{/if}}" data-originaluserid="{{if $data.rt&&$data.rt.u}}${rt.u.id}{{else}}${u.id}{{/if}}">
+            <img class="userPic multi-panel" data-route="/user/${u.id}" src="${u.pic}" width="50" height="50" />
+             <strong>
+                <a class="multi-panel" data-route="/user/${u.id}" data-usercard="${u.sn}">${u.sn}</a>
+                {{if u.verified}}<i title="官方认证"></i>{{/if}}
+            </strong>
+            <div id="weiboContent">
+                <p class="feed">{{html km.util.postFormatter.formatTxt(tx)}}</p>
+                
+        {{html km.attachmentShow($data, "main")}}
+
+                <!-- 当有转发微博的时候的原创微博 -->
+                {{if rt}}
+                <div class="forward">
+                    <p>
+                        {{if rt.u}}
+                        <a class="multi-panel" data-route="/user/${rt.u.id}" data-usercard="${rt.u.sn}">${rt.u.sn}{{if rt.u.verified}}<i title="官方认证"></i>{{/if}}:</a>
+                        {{/if}}
+                        {{html km.util.postFormatter.formatTxt(rt.tx)}}
+                    </p>
+                    
+        {{html km.attachmentShow($data, "quote")}}
+
+                    {{if rt.u}}
+                    <div class="feed-info">
+                        <time>
+                            <a class="multi-panel" data-route="/weibo/${rt.mid}" 
+            target="_blank" href="http://api.t.sina.com.cn/${rt.u.id}/statuses/${rt.mid}">${DATE.format(rt.cr)}</a>
+                        </time>
+                        来自 {{html km.util.postFormatter._blankLink(rt.source)}}
+                        <span>
+                            {{if rt.u.id == km.active.id}}
+                            <a title="删除微博" data-mid="${rt.mid}" class="delete-tweet">删除</a>
+                            {{/if}}
+                            <a class="multi-panel" data-route="/weibo-forward/${rt.mid}" tp="retweet" target="_blank" href="http://api.t.sina.com.cn/${rt.u.id}/statuses/${rt.mid}">
+                                转发{{if rt.repostsCount}}(${rt.repostsCount}){{/if}}
+                            </a>
+                            |
+                            <a class="multi-panel" data-route="/weibo-comment/${rt.mid}" tp="comment" target="_blank" href="http://api.t.sina.com.cn/${rt.u.id}/statuses/${rt.mid}">
+                                评论{{if rt.commentsCount}}(${rt.commentsCount}){{/if}}
+                            </a>
+                             <a data-action="monitor" class="monitor orange-btn btn-link">
+                                <i></i>监控
+                            </a>
+                             <a data-action="collect" class="collect blue-btn btn-link">
+                                <i></i>收集
+                            </a>
+                           
+                        </span>
+                    </div>
+                    {{/if}}
+                </div>
+                {{/if}}
+                <div class="feed-info">
+                    <time>
+                        <a class="multi-panel" data-route="/weibo/${mid}" target="_blank" 
+        href="http://api.t.sina.com.cn/${u.id}/statuses/${mid}">${DATE.format(cr)}</a>
+                    </time>
+                    来自 {{html km.util.postFormatter._blankLink(source, 6)}}
+                    <span>
+                        {{if $data.u && u.id == km.active.id}}
+                        <a title="删除微博" data-mid="${mid}" class="delete-tweet">删除</a>
+                        {{/if}}
+                        <a id="multi-panel-tweet-tab-forward" class="foward type-toggle" data-type="retweet">
+                            转发{{if $data.repostsCount}}(${$data.repostsCount}){{/if}}
+                        </a>
+                        |
+                        <a id="multi-panel-tweet-tab-comment" class="comment type-toggle active" data-type="comment">
+                            评论{{if $data.commentsCount }}(${$data.commentsCount}){{/if}}
+                        </a>
+                        {{if !$data.rt}}
+                            <a data-action="monitor" class="monitor orange-btn btn-link">
+                                <i></i>监控
+                            </a>
+                            <a data-action="collect" class="collect blue-btn btn-link">
+                                <i></i>收集
+                            </a>
+                            {{/if}}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- 列表啥的 -->
+        <div id="fowardCommentMod">
+            <section id="fowardMod" class="emotion-box fowardCommentMod">
+                {{tmpl({"listType": "retweet", "u": u, "data": $data, "originUser": $data.rt && $data.rt.u, "main_mid":  mid}) "#retweet-comment-form-tmpl"}}
+                <ul id="fowardList" class="comment-list"></ul>
+                <p id="retweet-list-pager" class="page"></p>
+            </section>
+            <section id="commentMod" class="emotion-box fowardCommentMod">
+                {{tmpl({"listType": "comment", "u": u, "tx": $data.tx, "originUser": $data.rt && $data.rt.u, "main_mid":  mid}) "#retweet-comment-form-tmpl"}}
+                <ul id="commentList" class="comment-list"></ul>
+                <p id="comment-list-pager" class="page"></p>
+            </section>
+        </div>
+    </div>
+</script>
+<script id="retweet-comment-form-tmpl" type="text/x-jquery-tmpl">
+    <form {{if !$data.inputor}}class="main-form"{{/if}} method="post" action="#" >
+        <input type="hidden" name="sourceMid" value="${main_mid}" />
+        {{if $data.reply_mid}}
+        <input type="hidden" name="replyid" value="${reply_mid}" />
+        {{/if}}
+        <input type="hidden" name="sourceType" value="status" />
+        <input type="hidden" name="dealBy" value="direct_${$data.reply_mid ? 'reply' : listType}"/>
+        <input type="hidden" name="${listType}Append" value="0" class="retweet-append" />
+        {{if listType === 'comment' && $data.originUser}}
+        <input class="retweet-content" type="hidden" name="rt" value="${'//@' + $data.u.sn + ':' + $data.tx}"/>
+        {{/if}}
+        <!--<p class="chartLengthCheck">您还有<em style="color:red;font-weight:bold;">30</em>个字可以输入</p>-->
+        <textarea class="tweet-content emotion-inputor{{if !$data.inputor}} panel-main-inputor" placeholder="请输入${listType === "retweet" ? "转发" :"评论"}内容{{/if}}" name="tx"></textarea>
+        <section class="editMod clearfix">
+            <a class="emotion-trigger" style="float:left" data-rel="e:ic"><i class="smile"></i></a>
+            <div style="float:left;color:#777">
+                <label>
+                    <input class="retweet-comment-sync retweet-to-curr" type="checkbox"/>
+                    {{if listType === "retweet"}}
+                    <span>同时评论给 </span><span class="userName">${u.sn}</span>
+                    {{else}}
+                    <span>同时转发到我的微博 </span>
+                    {{/if}}
+                </label>
+                {{if !$data.inputor && $data.originUser}}
+                <label style="display:block;margin-left:11px;line-height:0;border:0">
+                    <input class="retweet-comment-sync retweet-to-origin" type="checkbox"/>
+                    <span>同时评论给原文作者 </span><span class="userName">${originUser.sn}</span>
+                </label>
+                {{/if}}
+            </div>
+            <button data-type="${listType}" class="retweet-comment-submit operateBtn blue-btn">
+                ${listType === "retweet" ? "转发" : "评论"}
+            </button>
+        </section>
+    </form>
+</script>
+
+<!-- 微博附图等相关操作模板 -->
+<script id="attachment-thumb-tmpl" type="text/x-jquery-tmpl">
+<div class="preview-img" data-count="${items.length}">
+    <ul class="feed-img{{if items.length > 1}} multi-attachment{{/if}}{{if items.length == 4}} narrow-frame{{/if}}">
+        {{each items}}
+        <li>
+            <img data-index="${$index}" src="${tp}" data-images='{"zoom_img": "${$value.mp || $value.op}", "origin_img":"${op}"}' class="zoom-move thumb-zoom">
+        </li>
+        {{/each}}
+    </ul>
+</div>
+</script>
+<script id="attachment-show-tmpl" type="text/x-jquery-tmpl">
+<div>
+    <div class="image-box{{if isMulti}} multi-image-box{{/if}}">
+        {{tmpl($data) '#image-box-tmpl'}}
+    </div>
+    {{if isMulti}}
+    <div class="thumb-slider-wrap">
+        <div class="visible-box"><ul></ul></div>
+        <a class="slider-dir slider-prev{{if count < 8}} disabled{{/if}}">&lt;</a>
+        <a class="slider-dir slider-next{{if count < 8}} disabled{{/if}}">&gt;</a>
+    </div>
+    {{/if}}
+</div>
+</script>
+<script id="image-box-tmpl" type="text/x-jquery-tmpl">
+    <p class="ctrl-bar">
+        <a data-action="piup" class="icon-piup icon-bg">
+            收起
+        </a>
+        <a class="origin-image inco-bg" href="${origin_img}" target="_blank">
+            查看原图
+        </a>
+        <a data-action="left" class="icon-trunleft icon-bg">
+            向左转
+        </a>
+        <a data-action="right" class="icon-trunright icon-bg">
+            向右转
+        </a>
+    </p>
+    <div class="image-wrap">
+        <a data-action="piup">
+            <img class="narrow-move thumb-zoom-out" src="${zoom_img}" />
+        </a>
+        <p class="loading-img"></p>
+        {{if index - 1 >= 0}}
+        <p data-index="${index - 1}" class="pic-nav pic-nav-prev"></p>
+        {{/if}}
+        {{if index + 1 < count}}
+        <p data-index="${index + 1}" class="pic-nav pic-nav-next"></p>
+        {{/if}}
+    </div>
+</script>

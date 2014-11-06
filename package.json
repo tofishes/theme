@@ -1,0 +1,17 @@
+{
+  "name": "gulp-project",
+  "description": "one test about gulp",
+  "version": "0.0.1",
+  "homepage": "http://github.com/tofishes",
+  "repository": "gulp-project",
+  "author": "tofishes",
+  "tags": [
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "engines": {
+    "node": ">= 0.9"
+  }
+}

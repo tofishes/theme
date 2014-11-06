@@ -1,0 +1,486 @@
+//
+// Modals
+// --------------------------------------------------
+
+// Background
+.modal-backdrop {
+position: fixed;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+z-index: 1040;
+background-color: @black;
+// Fade for backdrop
+&.fade { opacity: 0; }
+}
+
+.modal-backdrop,
+.modal-backdrop.fade.in {
+.opacity(80);
+}
+
+// Base modal
+.modal {
+color:#666;
+position: fixed;
+top: 50%;
+left: 50%;
+z-index: 1050;
+width: 560px;
+margin: -180px 0 0 -280px;
+background-color: @white;
+.border-radius(4px);
+.box-shadow(0 3px 7px rgba(0,0,0,0.3));
+&.fade {
+.transition(e('opacity .3s linear, top .3s ease-out'));
+top: -25%;
+}
+&.fade.in { top: 50%; }
+}
+.modal-header {
+padding:0 15px;
+height:40px;
+line-height:40px;
+border-bottom: 1px solid #ddd;
+position:relative;
+.border-radius(4px 4px 0 0);
+h3{ font-size:14px; color:#707070; }
+button{.close; right: 15px;top: 12px; }// Close icon
+// Heading
+#gradient > .vertical (#ffffff,#f5f5f5);
+}
+
+// Body (where all modal content resides)
+.modal-body {
+min-height:100px;
+padding: 18px 20px;
+}
+
+// Footer (for actions)
+.modal-footer {
+padding: 10px 15px 11px;
+text-align: right; // right align buttons
+background-color: #f5f5f5;
+border-top: 1px solid #ddd;
+.border-radius(0 0 4px 4px);
+.box-shadow(inset 0 1px 0 @white);
+button{ width:90px; height:32px;.border-radius(4px);.box-shadow(0 2px 0 rgba(255, 255, 255, 0.3) inset);}
+}
+
+.item{.hor-list; margin-top:8px;
+    li{#gradient > .vertical (#ffffff,#f2f2f2);  .border-radius(3px); border:1px solid #e1e1e1; line-height:18px; padding:8px 12px; margin:0 8px 8px 0; cursor:pointer;
+        &:hover{#gradient > .vertical (#f7f7f7,#ebebeb); }
+        &:active{ #gradient > .vertical (#f2f2f2,#ffffff);}
+        i{visibility: hidden; width:12px; height:13px; background:url(img/delete-account.png) no-repeat;margin-left: 8px;vertical-align: middle; .hide-text; }
+        &:hover i{ visibility: visible; }
+        img{ display:none;}
+    }
+}
+
+//添加帐号
+.addAccount-modal {
+  .user-result{height:140px; overflow:auto;}
+  input[type="text"]{width:100%;.input-L;
+    &.loading{background:url(img/loading.gif) no-repeat 493px 9px;}
+  }
+  .item{ height:130px; overflow:auto;}
+}
+
+//Xwb弹窗
+.win-pop{ z-index:10003;position:absolute;margin-top:10px;}
+.win-pop .win-con{
+    background:#FFF;
+    .box-shadow(0 0 0 3px rgba(0, 0, 0, 0.1));
+    position:relative;
+    overflow:hidden;
+    .border-radius(4px);
+}
+.win-pop .win-tit{ .modal-header; color:#707070; font-weight:normal; }
+.win-pop .win-arrow{ position:absolute; left:25px; top:-10px; width:16px; height:10px; background:url(img/win-arrow.png) no-repeat; }
+.win-pop .close{ .close; position:absolute; right:10px; top:10px;opacity:0.9; }
+.win-pop .close:hover{ opacity:1;}
+.win-pop .btn-area{ float:right; margin-top:15px}
+.win-pop .btn-area a{ margin-left:8px;padding:4px 15px;.orange-btn; }
+.win-pop .btn-area a:hover{text-decoration:none;}
+.win-fixed{ position:fixed; top:50%; left:50%;}
+.icon-error, .icon-alert, .icon-success{ float: left; width: 17px; height: 17px; background: url("img/xwb-tip.png") right top no-repeat; margin: 6px 0 0 10px}
+.icon-success{ background-position: right 0px;}
+.icon-alert{ background-position: right -27px; }
+.icon-error{ background-position: right -27px;}
+.tipbox .icon-error,.tipbox .icon-alert,.tipbox .icon-success{ width: 32px; height: 32px; margin: 0}
+.tipbox .icon-success{ background-position: 0 0px;}
+.tipbox .icon-alert,.tipbox .icon-error{ background-position: 0 -42px;}
+.popup{top:150px}
+
+/*xwb 弹窗*/
+.win-tips{ margin-left:-170px; margin-top:-80px; width:340px;}
+.win-tips .win-box{ padding:15px 20px 20px;overflow:hidden;}
+.win-tips.tipbox{ width: 330px;}
+.win-tips.tipbox .win-box{ text-align: center; padding: 34px 40px 34px 20px;}
+.tipbox{ background: #fff; border: 1px solid #D4D4D4; box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1); color: #5a5a5a;}
+.tipbox .icon-success, .tipbox .icon-error{ float: none; display: inline-block; vertical-align:top; margin-right:8px;}
+.tipbox p{ display: inline-block; text-align:center; width: 230px; font-size: 18px; vertical-align: top; line-height:32px;}  /*@Julian 2013.5.3 修改使得文字居中*/
+.win-tips .win-box .tips-c p{ margin: 0 0 30px 35px; padding-top: 5px; line-height: 18px; color:#4B4B4B;}
+/*表情窗口*/
+.win-emotion{ position:absolute; top:50px; left:50px; width:475px;}
+.win-emotion .win-box{ padding:10px 12px; overflow:hidden;}
+.win-tab{ font-size:12px; padding-bottom:8px; margin-bottom:8px; border-bottom:1px dashed #e4e4e4;  }
+.win-tab a {display: inline-block;line-height: 16px;padding: 2px 7px;}
+.win-tab .current, .win-tab .current:visited {background: none repeat scroll 0 0 #5FABEF;color: #FFFFFF;}
+.win-emotion .hot-e-list{ margin-bottom:10px; overflow:hidden;}
+.win-emotion .hot-e-list a{ background-color:#fff9ec; border:1ps solid #fce0c3;}
+.win-emotion .emotion-box a{ float:left; margin-right:5px; margin-bottom:5px; border:1px solid #ddd;}
+.win-emotion .emotion-box a:hover{ border:1px solid #666;}
+.win-emotion .win-e-prev, .win-emotion .win-e-next{ position:absolute; top:20px; width:13px; height:13px;}
+.win-emotion .win-e-prev{ right:80px; background-position:-28px -242px;}
+.win-emotion .win-e-prev:hover{ background-position:-56px -242px;}
+.win-emotion .win-e-next{ right:60px; background-position:-28px -270px;}
+.win-emotion .win-e-next:hover{ background-position:-56px -270px;}
+.win-emotion .prev-disabled, .win-emotion .prev-disabled:hover{ background-position:0 -242px;}
+.win-emotion .next-disabled, .win-emotion .next-disabled:hover{ background-position:0 -270px;}
+/*插入视频、音乐、话题窗口*/
+.win-insert{ position:absolute; top:50px; left:50px; width:372px; color:#333;
+    .win-arrow{ left:141px;}
+    .win-box{ padding:16px 30px 20px 15px;}
+    .win-box p{ margin-bottom:10px; line-height:18px; font-size:12px;}
+    .win-box input{margin-right:10px;}
+    .win-box .insert-tab{ padding:5px 8px; margin-right:10px;}
+    .win-box .insert-tab.current{ background:#269dfe; color:#fff; font-weight:bold;}
+    .win-box .error-tips{ margin-top:6px; margin-bottom:0; color:#F00;}
+    .win-box .error-tips span{ display:block; color:#333;}
+}
+.insert-box{
+    #xwb_inputor{ width: 232px; height: 35px; padding: 6px; line-height: 21px;}
+    .btn-link{  height: 31px;line-height: 31px;margin-left: 8px;vertical-align: middle; width: 70px;
+        &:hover{text-decoration:none; color:#FFF;}
+    }
+}
+.win-topic {position:absolute; top:50px; left:50px;width: 420px;
+    .win-arrow {left:141px;}
+    .win-box {
+        padding:16px 26px 20px 15px;
+    }
+    .insert-topic-directly {
+        text-align: center;
+        margin-bottom:15px;
+        button {
+            height: 32px;
+            width: 100px;
+        }
+    }
+    .topic-item-container {
+        border-top: 1px dashed #cccccc;
+        padding:8px 4px;
+        ul {
+            .clearfix;
+            margin-top: 12px;
+            li {
+                .box-sizing(border-box);
+                width:50%;
+                float:left;
+                position: relative;
+                padding:2px 6px 2px 2px;
+                font-size:13px;
+                margin-bottom:2px;
+                a {
+                    display:inline-block;
+                    cursor:pointer;
+                    width: 160px;
+                    line-height:16px;
+                    word-wrap: break-word;
+                }
+                span {display:none;}
+                i {display:none;float:right;position: absolute;right:4px;}
+            }
+        }
+    }
+    .custom-topics { /* 自定义话题 */
+        .clearfix;
+        button {
+            float:right;
+            width:50px;
+            height:22px;
+            font-size:12px;
+            .border-radius(2px);
+        }
+        .edit-btn-on {
+            display: inline-block;
+        }
+        .edit-btn-off {
+            display: none;
+        }
+        .topic-inputor {
+            
+            margin-top:10px;
+            input {
+                width:230px;
+                height:27px;
+                line-height:19px;
+                padding:4px;
+            }
+            button {
+                width:54px;
+                height:27px;
+            }
+        }
+        .custom-topics-ul{
+            i {display: inline-block;background-image: url('img/x.png');width:16px;height:16px;cursor:pointer;}
+        }
+    }
+    .custom-topics.editing {
+        .edit-btn-on {
+            display: none;
+        }
+        .edit-btn-off {
+            display: inline-block;
+        }
+        .custom-topics-ul {
+            a {display: none;}
+            span {
+                display: inline-block;
+                width: 160px;
+                margin-right:16px;line-height:16px;cursor:default;
+                word-wrap: break-word;
+            }
+            i {display: inline-block;background-image: url('img/x.png');width:16px;height:16px;cursor:pointer;}
+        }
+        .topic-inputor {
+            display: block;
+        }
+    }
+
+}
+/*上传图片*/
+.win-picture{position:absolute; top:50px; left:50px; min-width: 400px; max-width: 470px; margin-left: 54px;
+    .pic-box{ padding-bottom: 20px;}
+    .win-arrow{left:87px;}
+    .nav-tabs{.hor-list; padding:10px 0 0 15px;
+        a{display: block; padding:10px 20px;margin-right: -1px; color:#4c4c4c; background-color:#f3f3f3;.box-shadow(0 0 0 1px #fdfdfd inset); border:1px solid #CCC;
+            &:hover{ text-decoration:none; }
+        }
+        .active a{ background-color:#FFF;border-bottom-color:#FFF; color:#000;}
+    }
+    .tab-content{border-top: 1px solid #CCC; margin-top:-1px; padding-top:15px;min-height: 40px;padding-top: 30px;text-align: center;}
+    #local{
+        button,.upload-pic{ width:120px; height:35px;}
+        .upload-pic{ overflow:hidden; position:relative; left: 50%; margin-left: -60px; margin-top: -35px;}
+        .upload-pic input{cursor:pointer; filter:alpha(opacity=0); opacity:0; position:absolute;font-size: 25px;right: 0;}
+    }
+    #remote{
+        input{ width: 234px; height: 35px;}
+        .error-tips{ padding:5px 0 0 52px; color:#F00; font-size: 12px;text-align: left;}
+    }
+    #preview{text-align: center;padding: 20px 10px 0;display:none;
+        .pic-list-count{ text-align: left; font-style: 12px; color: #333; margin-bottom: 10px;}
+        ul.pic-list{
+            li{ background: url(img/img_default.png) #fff center center no-repeat; position: relative; float: left; width: 80px; height: 80px; border: 1px solid #ccc; padding: 1px; margin: 0 6px 6px 0;
+                .loading{ position: absolute; left: 50%; top: 50%; margin: -8px 0 0 -8px;}
+                .pic-del{ .hide-text; display: none; position: absolute; right: 1px; top: 1px; width: 16px; height: 16px; background: url(img/x.png) left top no-repeat;}
+            }
+            li.add{ background: none; border: 2px dashed #ccc; padding: 0;
+                button{.hide-text; width: 80px; height: 80px; background: url(img/addAccount.png) center center no-repeat;}
+            }
+            li:hover .pic-del{ display: block;}
+            li.pic img{ width: 80px; height: 80px;}
+        }
+    }
+    .pic-remote{ width: 80px; height: 80px; border: 1px solid #ccc; padding: 1px; position: relative; margin: 0 auto;
+        img.pic{ width: 80px; height: 80px;}
+        .remote-del{ .hide-text; display: none; position: absolute; right: 1px; top: 1px; width: 16px; height: 16px; background: url(img/x.png) left top no-repeat;}
+    }
+    .pic-remote:hover .remote-del{ display: block;}
+}
+.win-picture.local, .win-picture.remote{
+    .nav{ display: none;}
+    #preview{display:block}
+}
+.win-picture.local{    
+    .pic-list-count, .pic-list{ display: block;}
+    .pic-remote { display: none;}
+}
+.win-picture.remote{
+    .pic-list-count, .pic-list{ display: none;}
+    .pic-remote { display: block;}
+}
+
+/*发微博*/
+.win-post{ position:absolute; top:100px; left:100px; width:730px; }
+.win-post .post-box { height:auto; border:none;}
+.win-post .post-box .post-textarea{ background:none;  height:150px;margin-top: 9px; position:relative}
+.share-upload-pic{display:inline-block;width:40px; margin-right:8px}
+
+.post-box{position: relative;}
+.post-box .upload-pic{ width:40px; height:20px;}
+.post-box .upload-pic{ /*margin:-20px 0 0 45px;*/ position:absolute;}
+.win-post .post-box .post-tips{ line-height:1; padding-left:4px; color:#5f5f5f}
+.win-post .post-box .close{ position:static;}
+/* 草稿箱样式 */
+.win-post-draft #teams,.win-post-draft #timingPost,.win-post-draft #audit_btn{display:none}
+.win-post-draft .post-box{padding-top:14px;}
+
+//微博发布框 begin
+#post-area{.box-shadow(0 1px 3px rgba(0,0,0,.15));}
+.post-box{ border:1px solid #e4e4e4; border-top:none; padding:0 15px; .border-radius(0 0 1px 1px);background-color:#fcfcfc;
+    .forward-address,#forwardComment,.set-time{display:none;}//隐藏转发评论相关的组件
+    .forward-hide{display:inline-block;}
+    .post-core{border:1px solid @borderColor; .border-radius(4px); .box-shadow(0 1px 2px rgba(0,0,0,.1) inset);background-color: #FFFFFF;
+        .text-area{ padding:8px 12px; }
+        textarea{ width:100%; line-height:22px;height:90px;}
+        .tips{ text-align:right;height: 18px;line-height: 18px; padding-right:20px; color:#717171;
+            em{ font-family: Constantia,Georgia;font-size: 22px;font-style: italic;font-weight: 700; color:#2695dc; }
+        }
+                            .out140{em {color:#E44443;}}
+        .post-type{ font-size:12px; height:30px; line-height:30px; margin-top:10px; padding-right:20px; border-top:1px solid #dfe1e3;
+            .box-shadow(0 1px 1px rgba(255,255,255,.4) inset);#gradient > .vertical (#f6f8f9,#e9ebed); .border-radius(0 0 4px 4px);
+            section{ display:inline-block; }
+            label{ margin-left:20px; }
+            input{ margin-right:6px;}
+            .post-monitor{ float:right;}
+        }
+    }
+    footer{ text-align:right; padding:10px 0 12px 0;line-height: 38px;
+        form{float:left;}
+        button{ width:102px; height:38px; margin-left:10px; font-size:16px;.border-radius(4px); }
+        .set-time{
+            a.face{ .hide-text; width:18px; height:18px; display:inline-block; background:url(img/add-area.png) no-repeat 0 0; vertical-align:middle; margin-right:10px;margin-left:10px; }
+            input{font-size:12px;background: url(img/calendar-icon.png) no-repeat 86px 2px;height:20px;line-height:14px;width:108px;padding:3px 5px;}
+            select{ width:80px; padding:1px; font-size:12px;height:20px;}
+            input,select{ font-family:arial;}
+        }
+    }
+    .add-area{height:18px; padding-left:20px;margin-top:7px; float: left;
+        a{ .hide-text; width:18px; height:18px; display:inline-block; background:url(img/add-area.png) no-repeat; vertical-align:top; margin-right:20px; }
+        .face{ background-position:0 0; }
+        .picture{ background-position:0 -18px; }
+        .video{background-position:0 -36px; }
+        .music{background-position:0 -54px;}
+        .topic{background-position:0 -72px;}
+    }
+}
+#timingPost{
+    display:inline-block;float:left;padding-left:24px;font-size:12px;
+    label{margin-right:12px;}
+}
+#post-nor-input,#post-sch-input{margin-right:3px;}
+
+//弹框中的提交审核除了草稿箱和收集，均不展示
+.win-pop #audit_btn{display:none;}
+.win-post.audit #audit_btn{display:inline-block;}
+.win-post.audit #xwb_send_btn{ display: none;}
+
+//家卓要求时间靠左 2013.3.11
+.win-pop .feed-info span{float:none;}
+
+//微博定时转发框
+.timingtask-id-readonly{display:none;height:25px;}
+.forward-box{
+    .forward-address{ display:block; color:#717171;
+        input{ width:100%;display:block;padding:10px 0 10px 12px;.border-radius(4px); .box-shadow(0 1px 2px rgba(0,0,0,.1) inset);margin:8px 0 15px; }
+        p{padding-bottom:8px;}
+        #nonentity{.errordata;margin-bottom: 20px;margin-top: -6px; }
+    }
+    .forward-hide,#timingPost,#audit_btn{ display:none;}//隐藏创建微博相关的组件
+    #forwardComment,.set-time{display:inline-block;}
+    .add-area{display:none;}
+    //footer .add-area .face{ margin-right:10px;}
+}
+.forward-box-timingtask{
+    .forward-box;
+    #teams{display:none;}
+    .post-box{padding-top:20px;}
+    .timingtask-id-readonly{display:block;}
+    .forward-address label{display:none;}
+}
+.forward-box-edit{
+    .forward-box;
+    #teams{display:none;}
+    .post-box{padding-top:20px;}
+    .forward-address{ display:block; color:#717171;
+        input{ width:100%;display:block;height:40px;line-height:40px;padding-left:12px;.border-radius(4px); .box-shadow(0 1px 2px rgba(0,0,0,.1) inset);margin:8px 0 15px; }
+        p{padding-bottom:8px;}
+        label{display:none;}
+    }
+}
+.sch-noavatar{
+    #teams{display:none;}
+    .post-box{padding-top:20px;}
+}
+.normal-noavatar{
+    #teams{display:none;}
+    .post-box{padding-top:20px;}
+}
+
+.team-avator{ font-size:0;
+    min-height:39px; background:url(img/team-leader.png) no-repeat 105px 14px; padding:6px 0 6px 120px; position:relative;
+    li{ display:inline-block; margin-right:10px;.box-sizing(border-box); padding:2px;border:2px solid #efefef;cursor:pointer;position:relative;
+        .cover{ background: #000; .opacity(50); width: 35px; height: 35px; margin-top: -35px; display: none;}
+        input{display: none;position: absolute;}
+        &:before{ content:'\0020'; width:12px; height:12px; background:url(img/platform-icon.png) no-repeat; position:absolute; bottom:3px; right:3px; .box-shadow(0 1px 2px rgba(0, 0, 0, 0.5)); }
+        &.tencent:before{ background-position:-12px 0; }
+        &.renren:before{background-position:-24px 0;}
+    }
+    img{vertical-align:top; width:35px; height:35px }
+    .active{border-color:#FF9700;
+        &:after{content:'\0020';position:absolute; top:3px; left:3px; width:20px; height:20px;background:url(img/avator-active.png) no-repeat;  }
+    }
+    .leader{ left:34px; position:absolute;top:15px;}
+}
+.activeG{position:absolute;top:0;  //第一排脑袋
+    .meta{ margin-top:29px;}
+    .team-avator{padding:15px 80px 15px 120px; background-position:105px 23px;}
+    li{ border-color:#fcfcfc;}
+    .gName{.hidden}
+}
+#teams{padding:73px 0 0;position:relative;height:0px;overflow:hidden;vertical-align: middle;
+    &.showAll{ height:auto;margin-bottom:15px;  }
+    // .team-avator{
+    //     margin-left: 28px;
+    // }
+    .meta{margin-top:20px;float:left;color:#6e6e6e; font-size:12px;position:relative;z-index:1;
+        .gName{width:6em;margin-left:5px;display: inline-block; height:15px; line-height:15px; .text-overflow;}
+    }
+    div{.clearfix}
+    .activeG{
+        .meta{ margin-top:29px;}
+
+    }
+}
+#avators{max-height:205px;overflow-y:auto; padding:0 20px 15px 15px;
+    .border-radius(4px);
+        border:1px solid #e3e3e3;
+        border-top-color:#cbcbcb;
+        .box-shadow(0 1px 0 #e3e3e3 inset);
+        background-color:#efefef; }
+#no-authorized-users{
+    display:none;position:absolute;line-height:36px;top:18px;left:4px;color:#7f7f7f;padding-left:24px;background: url(img/first-came.png) no-repeat 0 -23px;
+}
+#showMore{ width:62px; height:26px; position:absolute;top:18px;right:1px;display:none;border:1px solid #e8e8e8;font-size:12px;
+    .border-radius(16px);
+    i{margin-right:4px;}
+}
+#calendarChart{ padding:15px;background-color:#f0f0f0;.box-shadow(inset 0 9px 6px -8px rgba(0,0,0,.15));
+    .post-calendar{width:36%; float:left;
+        // .ui-datepicker-header{background-color: #EFEFEF;}
+    }
+    .post-chart{width:63%; border:1px solid #e4e4e4; float:right; color:#666; background-color: #fff;
+        //h4{ height:39px;line-height:39px; background-color:#EFEFEF; font-weight: normal; padding-left:12px; border-bottom:1px solid #e4e4e4;color:#5a5a5a; }
+        .intelligent-time{ padding:12px 0 12px 10px; font-size: 13px;
+            select{ width:65px;font-size: 12px;font-family: arial;}
+            select:first-child{margin-left:10px;}
+            input{ width:50px; text-align:center; margin:0 8px;height: 21px;line-height:21px;font-size: 12px;font-family: arial; }
+            span{border-left:1px solid #e6e6e6;padding-left:15px;margin-left:15px;}
+        }
+    }
+    .plot-title{padding:10px;font-size:14px;line-height:14px;
+        span{font-size:12px;}
+    }
+    #publishTime{ height:137px; background-color:#FFF;}
+}
+
+.win-pop .plot-legend {color:#636363;font-size:12px;text-align:right; padding-right:32px;line-height:20px;background-color:#fff;padding-top:10px;
+    b {display:inline-block;margin:0 4px 0 0;width:8px;height:8px;.border-radius(4px);}
+    span {margin-left:20px}
+}
+
+//微博发布框 end

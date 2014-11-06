@@ -1,0 +1,18 @@
+<script type="text/template" data-name="home">
+<ul class="feature-list">
+    <li class="feature-plus">
+        <i></i>
+        <p>添加</p>
+    </li>
+</ul>
+</script>
+
+<script type="text/template" data-name="featureItem">
+{{if !$data.hide}}
+<li class="feature-${name} feature-item">
+    <i></i>
+    <p>{{html title}}</p>
+    <a class="icon icon-remove feature-item-remove"></a>
+</li>
+{{/if}}
+</script>

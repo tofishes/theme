@@ -1,0 +1,32 @@
+<li data-id="${mid}" class="pic-txt">
+    <img class="pic userPic multi-panel" data-route="/user/${u.id}" width="40" height="40" src="${u.pic}" alt="" />
+    <div class="txt">
+        <strong>
+            <a class="multi-panel" data-route="/user/${u.id}" data-usercard="${u.sn}" target="_blank" href="http://weibo.com/u/${u.id}">
+                ${u.sn}{{if u.verified}}<i title="官方认证"></i>{{/if}}：
+            </a>
+        </strong>
+        {{if type === "forward"}}
+        <em class="tweet-type-mark">转发</em>
+        {{/if}}
+        <p class="feed">{{html util.postFormatter.formatTxt(tx)}}</p>
+
+        <div class="feed-info">
+        {{if type === "forward"}}
+            <a class="multi-panel" data-route="/weibo/${$data.mid}"><time>${DATE.format(cr)}</time></a>
+        {{else}}
+            <time>${DATE.format(cr)}</time>
+        {{/if}}
+        {{if $data.source}}
+            来自于 {{html util.postFormatter._blankLink(source)}}
+        {{/if}}
+            <span style="display:none">                        
+                {{if type === "forward"}}
+                    <a data-type="retweet" class="retweet-comment-quick multi-panel" data-route="/weibo/${$data.mid}">
+                        转发{{if repostsCount}}(${repostsCount}){{/if}}
+                    </a>
+                {{/if}}
+            </span>
+        </div>
+    </div>
+</li>

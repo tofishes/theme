@@ -1,0 +1,75 @@
+<li data-id="${mid}">
+	{{if u}}
+	<div class="user-pic">
+		<img class="multi-panel" data-route="/user/${u.id}"
+			width="50" height="50" src="${u.pic || "/assets/css/img/defaultPic.png"}" alt="${u.sn}" title="${u.sn}" />
+	</div>
+	{{else}}
+	<div class="user-pic">
+		<img src="/assets/css/img/defaultPic.gif" alt="默认头像" title="默认头像" />
+	</div>
+	{{/if}}
+	<div class="content"> 
+		{{if $data.u}}
+			<strong>
+				<a class="multi-panel" data-route="/user/${u.id}" data-usercard="${u.sn}" href="http://weibo.com/u/${u.id}" target="_blank">
+					{{if u.sn}}${u.sn}{{/if}}
+				</a>
+				{{if u.verified}}<i title="官方认证"></i>{{/if}}
+	        </strong>
+		{{/if}}
+		<p class="feed">	
+			{{html util.postFormatter.formatTxt(tx)}}
+		</p>
+		
+		{{html kws.attachmentShow($data, "main")}}
+
+		<!-- 转发微博中所嵌套的原创微博 -->
+		{{if rt}}
+		<div class="forward">
+			<p>
+				{{if $data.rt.u&& $data.rt.u.id}}
+					<a class="multi-panel nick" data-route="/user/${rt.u.id}" data-usercard="${rt.u.sn}">${rt.u.sn}{{if rt.u.verified}}<i title="官方认证"></i>{{/if}}</a>:
+				{{/if}}
+				{{html util.postFormatter.formatTxt(rt.tx)}}
+			</p>
+			
+			{{html kws.attachmentShow($data, "quote")}}
+
+			<div class="feed-info">
+				<time>
+					{{if rt.u}}
+					<a class="multi-panel" data-route="/weibo/${rt.mid}">${DATE.format(rt.cr)}</a>
+					{{else}}<span>${DATE.format(rt.cr)}</span>
+					{{/if}}
+				</time>
+				{{if rt.source}}
+					来自 {{html km.util.postFormatter._blankLink(rt.source)}}
+				{{/if}}
+				
+				<span>
+					<a class="multi-panel" data-route="/weibo-forward/${rt.mid}" target="_blank">转发{{if rt.repostsCount}}(${rt.repostsCount}){{/if}}</a>|
+					<a class="multi-panel" data-route="/weibo-comment/${rt.mid}" target="_blank">评论{{if rt.commentsCount}}(${rt.commentsCount}){{/if}}</a>		
+				</span>
+			</div>
+		</div>
+		{{/if}}
+		{{if cr}}
+		<div class="feed-info">
+			<time>
+				{{if $data.u}}
+				<a class="multi-panel" data-route="/weibo/${mid}" target="_blank">${DATE.format(cr)}</a>
+				{{else}} ${DATE.format(cr)}
+				{{/if}}
+			</time>
+                {{if $data.source}}
+                来自 {{html source}}
+                {{/if}}
+			<span>
+				<a class="multi-panel" data-route="/weibo-forward/${mid}" target="_blank" href="">转发{{if repostsCount}}(${repostsCount}){{/if}}</a>|
+				<a class="multi-panel" data-route="/weibo-comment/${mid}" target="_blank" href="">评论{{if commentsCount}}(${commentsCount}){{/if}}</a>
+			</span>
+		</div>
+		{{/if}}
+	</div>
+</li>

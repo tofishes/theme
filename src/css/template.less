@@ -1,0 +1,21 @@
+@import "reset.less"; //css reset 考虑到各浏览器默认样式的差异化，用reset统一一下，主要是标签端的默认样式，权重最低
+
+// Core variables and mixins
+@import "variables.less"; // css变量，会定义些文字大小，颜色等，方便全局公用
+@import "mixins.less"; // css 公用class 常见的基础公用类 比如 .clearfix; .hide-text; .hor-list; .triangle;
+
+// Base layout CSS
+@import "header"; // 头部黑色区域，logo + 帐号切换
+@import "nav.less"; // 左侧网站主导航
+@import "module.less"; //公用模块，考虑到全站会有重用的模块，把样式集中到这里
+@import "buttons.less"; // 全站使用到的按钮 对应标签button
+
+@import "user.less"; // 微博帐号信息，完整的包括：头像+昵称+简介+三围
+@import "feed-list.less"; // 微博列表
+@import "pager.less"; // 分页
+@import "modals.less"; // bootstrap弹框样式 xweibo 弹窗 表情 样式
+@import "animations.less"; // css3动画，这是加分项，加上之后会有视觉上的柔和感
+@import "multi-panel.less"; //侧边栏样式
+@import "interactiveHistory-page.less"; //帐号粉丝，关注，交互历史列表
+
+@import "collect-page.less"; // 所有 -page 的都属于各自页面端单独使用的样式

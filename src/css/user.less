@@ -1,0 +1,92 @@
+/* 微博昵称加v组件 */
+.nick{
+	font-weight: normal;
+	font-size:14px;
+	padding-bottom:5px;
+	i{
+		background: url(img/v.png) no-repeat;
+	    height: 13px;
+	    vertical-align: -1px;
+	    width: 16px;
+	    &.company{ background-position:0 -17px;}
+	}
+}
+// 微博三个数 关注 粉丝 微博
+.three-numbers{ line-height:15px;vertical-align: middle;font-size:12px; padding-top:6px;color:@grayLight;
+	span{ display:inline-block;margin-right:2px; padding-right:5px; border-right:1px solid #CCC;
+		&:last-child{ border-right:none; }
+	}
+	em{ display: block;font-size:14px; font-weight:bold; font-family:arial; }
+}
+/*-------------- 以上为用户公用类 --------------*/
+
+/* 搜索微博帐号结果列表 */
+.user-result{ width:518px;position: absolute; z-index: 1; margin-top:3px; border:1px solid #D4D4D4;background-color:#FFF;
+	li{border-top:1px solid #E4E4E4; background-color:#F8F8F8; padding:8px; cursor:pointer;
+		&:first-child{border-top:none;}
+		&:hover{ background-color:#F1F1F1;.fadebg;}
+		> img{ float:left; margin-right:6px;}
+		strong{.nick;display:block;font-size:12px;line-height: 14px; padding-bottom:4px; }
+		p{font-size:12px;color:#7e7e7e; margin-left:38px;}
+	}	
+}
+/* 微博帐号信息 */
+.weiboInfo{
+	font-size:12px;
+	> img, .avatar { float:left; margin-right:10px;}
+	strong{.nick}
+	ul{.hor-list;line-height: 15px;padding-top:6px;}
+	li{ border-left:1px solid #999; padding-left:8px; margin-left:8px;
+		em{ .number; display:block; }
+		&:first-child{ border-left:none;padding-left:0; margin-left:0;}
+	}
+	.info{ line-height:20px; padding-top:6px;}
+	.gender{line-height:16px;padding-bottom:5px;margin-left:62px;padding-left:20px;background:url(img/weibo-gender.png) no-repeat 3px 3px;
+		&.female{ background-position:3px -35px;}
+	}
+}
+// @tofishes 2013年3月7日15:14:52果果要求比header层级高，故设为z-index: 101;
+.user-card-wrap{z-index:101;background-color:#FFF;border: 1px solid #C0C0C0;.border-radius(1px); .box-shadow(2px 2px 3px rgba(0, 0, 0, 0.2)); width:270px; padding:8px; position:absolute;
+	.nickname {color:#333;}
+	a { color:#808080;}
+	li{border-left:1px solid #D3D3D3}
+	p{ padding-top:6px;color: #545454; }
+}
+/*名片*/
+.usercard{ display: none; position: absolute; width: 300px; z-index: 101;color: #5D5D5D; background-color:#FFFFFF; border: 1px solid #c3c3c3; .border-radius(1px); .box-shadow(2px 2px 3px rgba(0, 0, 0, 0.2)); font-size: 12px; padding: 15px 15px 12px;.weiboInfo;
+	img{padding: 1px;border: 1px solid #D5D5D5;}
+	strong{display:block; }
+	ul{ padding-top:0;}
+	li{
+		a{ margin-right:6px;}
+		span{.number;}
+	}
+	.info{ border-top: 1px dashed #CCCCCC;margin-top:14px;}
+	&:before{content:'\0020'; width:20px; height:10px; background:url(img/triangle.png) no-repeat 0 -28px; position:absolute; left:50%; bottom:-10px; margin-left:-10px;  }
+}
+.usercard.bottom{
+	&:before{background-position: 0 -18px; top:-10px;}
+}
+.usercard.right{
+	&:before{background-position: 0 -28px; top:-10px; left:auto; right:15px; top:auto; bottom:-10px}
+}
+.usercard.bottom.right{
+	&:before{background-position: 0 -18px; top:-10px; left:auto; right:15px; top:-10px;}
+}
+.usercard-spec { position: absolute; width: 300px; z-index: 101;color: #5D5D5D; background-color:#FFFFFF; border: 1px solid #c3c3c3; .border-radius(1px); .box-shadow(2px 2px 3px rgba(0, 0, 0, 0.2)); font-size: 12px; padding: 15px 15px 12px;.weiboInfo;
+	strong{display:block; }
+	ul{ padding-top:0;}
+	li{
+		a{ margin-right:6px;}
+		span{.number;}
+	}
+	.info{ border-top: 1px dashed #CCCCCC;margin-top:14px;}
+	img, .avatar { float:left; margin-right:10px;padding: 1px;border: 1px solid #D5D5D5;}
+}
+
+/*@谁*/
+.atwho { padding:2px;width:160px;background:#fff;border:1px solid #ccc;position:absolute; }
+.atwho h4 { padding:5px 0 5px 12px;font-size:12px;font-weight:400; }
+.atwho li { padding-left:12px;height:21px;line-height:21px;color:#666;cursor:pointer;overflow:hidden; }
+.atwho li b { font-weight:700; }
+.atwho li.cur { background:#eef4f6; }

@@ -1,0 +1,39 @@
+<!-- 左侧面板的交互历史模板 -->
+<li class="{{if meInitiative}}grayBg{{else}}greenBg{{/if}}" >
+    {{if meInitiative}} <img class="fl userPicture" src="${km.active.pic}" alt="${km.active.sn}"  />
+    {{else}} <img class="fl userPicture" src="${$item.pic}" alt="${$item.sn}"  />
+    {{/if}}
+   
+    <div class="historyContent">
+        <div class="main">
+            {{if meInitiative}}<span>我</span>{{else}}<em>@${$item.sn}</em>{{/if}}
+            <!-- 为交互历史而写 -->{{if type=="interaction"}}为 <em>@${$item.sn}</em> 添加了交互历史{{/if}}
+            {{if type=="comment"||type=="reply"||type=="privateLetter"||type=="forward"||type=="follow"||type=="interaction"}}
+            {{else}}
+                {{if action=="cancel"}}取消{{else action=="add"}}添加{{else action=="update"}}更新{{/if}}
+            {{/if}}
+            {{if type=="follow"}}关注了
+            {{else type=="comment"}}评论了
+            {{else type=="follow"}}关注了
+            {{else type=="reply"}}回复了
+            {{else type=="forward"}}转发了
+            {{else type=="privateLetter"}}发来一条私信
+            {{/if}}
+            {{if type=="privateLetter"}}
+            {{else type!="interaction"}}
+                 {{if meInitiative}}<em>@${$item.sn}</em>
+                 {{else}}我
+                 {{/if}}
+            {{/if}}
+            {{if type=="comment"||type=="reply"||type=="forward"}}的微博{{/if}}
+            <time>${DATE.format(time)}</time>
+        </div>
+        {{if weibo}}
+            <p>:<a target="_blank" href="${weibo.url}">{{html km.util.postFormatter.formatTxt(weibo.content)}}</a></p>
+        {{else}}
+
+            {{if content}}<p>${content}</p>{{/if}}
+
+        {{/if}}
+    </div>
+</li>

@@ -1,0 +1,93 @@
+<div id="multi-panel-overlay" class="full-overlay multi-panel-box">
+    <div id="multi-panel-wrap" class="panel-wrap">
+        <div id="multi-panel-head" class="panel-head">
+            <span class="page">
+                <a data-action="prev" class="multi-panel-nav-prev pre"></a>
+                <a data-action="next" class="multi-panel-nav-next next"></a>
+            </span>
+            <h3 id="multi-panel-title"></h3>
+            <i class="off multi-panel-off">×</i>
+        </div>
+        <div id="multi-panel" class="multi-panel-con"></div>
+    </div>
+</div>
+
+<script id="common-empty-tip-tmpl" type="text/x-jquery-tmpl">
+<p class="empty-content"><i class="i-warn"></i>{{html emptyTip}}</p>
+</script>
+<!--微博详情模板-->
+<!--#include virtual="/tmpl/weibo-detail.tmpl" -->
+<!--个人情模板-->
+<!--#include virtual="/tmpl/user-detail.tmpl" -->
+
+<!--审核任务列表的框架-->
+<!--#include virtual="/tmpl/publish/audit-frame.tmpl" -->
+<!--后备资源列表的框架-->
+<!--#include virtual="/tmpl/publish/reserve-frame.tmpl" -->
+<!--审核任务列表模板-->
+<script id="audit-pending-list-tmpl" type="text/x-jquery-tmpl">
+<!--#include virtual="/tmpl/publish/audit-pending-list.tmpl" -->
+</script>
+<!--后备资源列表模板-->
+<script id="reserve-list-tmpl" type="text/x-jquery-tmpl">
+<!--#include virtual="/tmpl/publish/reserve-list.tmpl" -->
+</script>
+
+<script id="panel-notice-tmpl" type="text/x-jquery-tmpl">
+<div class="notice">
+    <p>
+        <i></i>${info}
+    </p>
+</div>
+</script>
+<!-- 我的微博列表 -->
+<script id="myWeiboTmpl" type="text/x-jquery-tmpl">
+    <!--#include virtual="/tmpl/feed-list.tmpl" -->
+</script>
+<!-- 粉丝模板 -->
+<script id="contactTmpl" type="text/x-jquery-tmpl">
+<!--#include virtual="/tmpl/contactlist.tmpl" -->
+</script>
+<!-- 分组模板 -->
+<script id="groupTmpl" type="text/x-jquery-tmpl">
+    {{if groupList[0]}}
+        <a class="groupNav" title="${$item.kmtagshow(groupList)}" data-type="sidebar" data-id="${$item.kmtagdataId(groupList)}" href="javascript:void(0);">${((Xwb.util.byteLen($item.kmtagshow(groupList)) / 2 > 5) ? (Xwb.util.byteCut($item.kmtagshow(groupList), 4 * 2)+ '…') : ($item.kmtagshow(groupList)))}</a>
+    {{else}}
+        <a class="groupNav" title="选择分组" data-type="sidebar" data-id="" href="javascript:void(0);">选择分组</a>
+    {{/if}}
+</script>
+<!-- 交互历史模版 -->
+<script id="historyTmpl" type="text/x-jquery-tmpl">
+<!--#include virtual="/tmpl/interactive-history.tmpl" -->
+</script>
+<!-- 评论,转发列表 -->
+<script id="commentFowardTmpl" type="text/x-jquery-tmpl">
+    <li class="emotion-box" data-id="${$data.mid}">
+        <img class="fl userPic multi-panel" data-route="/user/${u.id}" width="40" height="40" src="${u.pic}" alt="" />
+        <strong>
+            <a class="multi-panel" data-route="/user/${u.id}" data-usercard="${u.sn}">${u.sn}{{if u.verified}}<i title="官方认证"></i>{{/if}}：</a>
+        </strong>
+        <p>{{html km.util.postFormatter.formatTxt(tx)}}</p>
+        <div class="feed-info">
+        {{if $item.listType === "retweet"}}
+            <a class="multi-panel" data-route="/weibo/${$data.mid}"><time>${DATE.format(cr)}</time></a>
+        {{else}}
+            <time>${DATE.format(cr)}</time>
+        {{/if}}
+        {{if $data.source}}
+            来自于 {{html km.util.postFormatter._blankLink(source)}}
+        {{/if}}
+            <span>                        
+                {{if u.id === km.active.id || ($item.listType === 'comment' && rt.u.id === km.active.id)}}
+                    <a data-mid="${mid}" data-type="${$item.listType}" class="delete-comment">删除</a>
+                {{/if}}
+
+                {{if $item.listType === "retweet"}}
+                    <a data-type="retweet" class="retweet-comment-quick">转发{{if repostsCount}}(${repostsCount}){{/if}}</a>
+                {{else}}
+                    <a data-type="comment" class="retweet-comment-quick">回复{{if commentsCount}}(${commentsCount}){{/if}}</a>
+                {{/if}}
+            </span>
+        </div>
+    </li>
+</script>

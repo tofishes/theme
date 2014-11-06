@@ -1,0 +1,133 @@
+<!-- 个人面板 -->
+<script id="user-detail-tmpl" type="text/x-jquery-tmpl">
+<div id="peoplePanel" style="display:block">
+    <!-- 个人信息模块 -->
+    <div id="peopleInfo" data-id="${$item.id}" class="clearfix">
+        <img id="userPicture" class="fl" src="${large}" alt="${sn}" />
+        <section id="userInfo">
+            <h2 class="nick">${sn}{{if verified}}<i title="${verified_reason}"></i>{{/if}}<span id="setRemark">(设置备注)</span></h2>
+            <ul>
+                <li>
+                    <span class="gender">
+                        {{if $data.gender=="m"}}男
+                        {{else $data.gender=="f"}}女
+                        {{else}}未知
+                        {{/if}}
+                    </span>
+                    {{if $data.location}}<span class="location">${location}</span>{{/if}}
+                    
+                </li>
+                <!-- <li><em>标签:</em> <span>${tag}</span></li> -->
+                {{if description}}
+                <li>
+                    <em>简介:</em>
+                    <span title="${description}">${(Xwb.util.byteLen(description) / 2 > 19) ? (Xwb.util.byteCut(description, 18 * 2) + '…'): description} </span>
+                </li>
+                {{/if}}
+            </ul>
+            {{if km.active.platform !='renren'&&km.active.id!=id}}
+            <div class="content-r" style="display:inline-block;float:none" data-follow="{{if following&&followme}}mutualFollow{{{{/if}}">
+            {{if following||followme}}
+                <section class="
+                {{if followme&&following}}mutualFollow {{else followme}}myFans {{else following}}following  {{/if}} hasFollow">
+                    <span>
+                        {{if km.active.platform=='sina'}}
+                            <i></i>
+                            {{if followme&&following}}互相关注{{else following}}已关注{{else}}我的粉丝{{/if}}
+                        {{else}}收听
+                        {{/if}}
+                        </span>
+                    {{if following}}
+                        <button class="cancelFollow">取消</button>
+                     {{else}}
+                        <button class="addfollow-btn">关注</button>
+                    {{/if}}
+
+                </section>
+            {{else}}
+                <button class="follow addfollow-btn">
+                    <span>{{if km.active.platform=='sina'}}关注{{else}}收听{{/if}}</span>
+                </button>
+                </a>
+            {{/if}}
+            </div>
+            {{/if}}
+        </section>
+        {{if km.active.id!=id}}
+        <section id="groupContainer">
+        </section>
+        {{/if}}
+        
+    </div>
+    <ul id="peopleNavList" class="tab">
+        <li id="myWeibo" class="multi-panel-user-tweet active">
+            <a id="historyHomePage" data-page="1">微博<em>(${statuses})</em></a>
+        </li>
+        <li id="follow" class="multi-panel-user-follow">
+            <a>关注<em>(${follows})</em></a>                   
+        </li>
+        <li id="fans" class="multi-panel-user-fans">
+            <a>粉丝<em>(${fans})</em></a>
+        </li>
+        {{if km.active.id!=id}}
+        <li id="history" class="multi-panel-user-history">
+            <a>交互历史</a>
+        </li>
+        {{/if}}
+    </ul>
+    <!-- 微博模块 -->
+    <section id="myWeiboMod" class="mod">
+        <div class="filter">
+            <ul id="filter-list" class="filter-list">
+                <li data-val="0" class="active">全部</li>
+                <li data-val="1">原创</li>
+                <li data-val="2">图片</li>
+                <li data-val="3">视频</li>
+                <li data-val="4">音乐</li>
+            </ul>
+        </div>
+        <p id="notHistoryList"  class="notTip" style="display:none;">正在为您抓取数据，请稍后刷新页面</p>
+        <p id="notMyWeiboList" class="notTip" style="display:none;">暂时没有返回微博数据</p>
+        <ul id="myWeiboList" class="feed-list"></ul>
+
+        <!-- 分页模块 -->
+        <p id="barWeiboListPaging" class="prevNext" >
+            <button class="prev gray-btn" style="display:none;">上一页</button>
+            <button class="next gray-btn" style="display:none;">下一页</button>
+        </p>
+    </section>
+    <!-- 关注模块 -->
+    <section id="followMod" class="mod">
+        <div class="filter" style="display:none;">
+            <ul id="followFilterList" class="filter-list">
+                <li data-val="0" class="active">全部关注</li>
+                <li data-val="1">共同关注</li>
+            </ul>
+        </div>
+
+        <ul id="followList" class="user-list"></ul>
+
+        <!-- 分页模块 -->
+        <p id="panel-follow-pager" class="page"></p>
+    </section>
+    <!-- 粉丝模块 -->
+    <section id="fansMod" >
+        <ul id="fansList" class="user-list"></ul>
+        <!-- 分页模块 -->
+        <p id="panel-fans-pager" class="page"></p>
+    </section>
+    <section id="historyMod" class="mod">
+        <button id="addHistoryNav" class="gray-btn">
+            <img src="assets/css/img/pen.png" alt="新建交互历史" />
+            <span>新建交互历史</span>
+        </button>
+        <form id="addHistoryMod">
+            <textarea id="historyInput"></textarea>
+            <button type="button" id="saveHistory" class="blue-btn">保存</button>
+            <button type="button" id="cancelHistory" class="gray-btn">取消</button>
+        </form>
+        <div id="historyList"></div>
+    </section>
+
+</div>
+</script>

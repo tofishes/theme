@@ -1,0 +1,22 @@
+.step-flow-wrap {
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    overflow: hidden;
+}
+.step-flow-head, .step-flow-foot {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height:30px;
+    line-height: 30px;
+}
+.step-flow-foot {
+    bottom: 0; top: auto;
+}
+.step-shim {
+    position: absolute;
+    left: 0; right: 0;
+}
+.step-shim-hf {
+
+    bottom: 30px; top: 30px;
+}

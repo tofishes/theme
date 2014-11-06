@@ -1,0 +1,78 @@
+#version-manual{ padding: 20px 20px 25px 25px;
+    i.yes,i.no{width:20px; height:12px;background:url(img/timing-status.png) no-repeat; vertical-align:-1px; margin-right:8px;}
+    i.yes{background-position:0 -18px;   }
+    i.no{ background-position:0 -34px; }
+    .version-icon{ width:20px; height:16px; background:url(img/version.png) no-repeat; margin-right: 8px;vertical-align: text-bottom;}
+}
+.version-info{color:#000; margin-bottom:20px;
+    span{ display:inline-block; margin-right:10px; width:9px; height:9px; border:2px solid #545454; }
+    li{ height:30px; line-height:30px; }
+    em{ color:#6e6e6e; }
+}
+//版本信息  2013.09.03 by zhangcheng
+.version-tip{ background-color: #ffaa00;color: #fff;font-size: 18px;text-align: center;padding: 10px;margin: -20px -20px 20px -25px;
+    a{color: #fff;
+        &:hover{color: #3e9ee0;}
+    }
+}
+.version-table{ width:100%;
+    thead{ height:40px; line-height:40px;text-align: left;text-indent: 20px;#gradient > .vertical (#dfdfdf,#d5d5d5);
+        .pay{ color:#ff6b02;}
+        tr{ border-bottom:1px solid #FFF;
+            th{ height:40px;
+                p{border-left: 1px solid #bbbbbb; box-shadow: 1px 0px 0px 0px #e5e5e5 inset; line-height: 28px;}
+            }
+            th:first-child{ text-align: center; text-indent: 0;}
+            th:first-child p,.no-border p{ border-left: none; box-shadow: none;}
+        }
+    }  
+    tbody{color:#000000;
+        tr{ border-bottom:1px solid #FFF;
+            td{ background-color:#f9f9f9; font-size:12px; height:40px; text-indent:20px;border-left: 1px solid #E9E9E9;border-bottom: 1px solid #E9E9E9;}
+        }
+        .is-header {
+            td{ background-color: #e0e0e0; font-size: 14px; color: #000000; text-indent: 0; text-align: center; border-left:none; font-weight: bold;}
+        }
+        .has-th {
+            th{ background-color:#ededed; color:#6e6e6e; font-weight:normal;}
+            th + td{ color: #828282; background-color:#f3f3f3;}
+            th + td + td{ color: #444444; background-color:#f3f3f3;}
+        }
+        .no-th {
+            td:first-child{ color: #828282; background-color:#f3f3f3;}
+            td:first-child + td{ color: #444444; background-color:#f3f3f3;}
+        }
+        .no-border {       
+            td{ border-bottom:none;}
+        }       
+    }
+}
+
+/*常见问题*/
+#faq-manual{padding:40px 40px 0;}
+#faq-body{
+    h3{ height:19px; line-height:19px; margin-bottom:7px; color:#292929; font-size: 18px; padding-left: 25px; background:url(img/faq-icon.png) no-repeat; 
+        &.account-manage{ background-position:0 1px; }
+        &.timing{ background-position:0 -18px; }
+        &.scrm{background-position:0 -37px; }
+        &.publish{background-position:0 -57px;}
+        &.limit{background-position:0 -76px;}
+        &.wom{background-position:-1px -95px;}
+        &.version{background-position:0 -114px;}
+        &.dashboard{background-position:0 -133px;}
+        &.monitor{background-position:0 -152px;}
+        &.account-analysis{background-position:0 -171px;}
+    }
+    dl{ margin-bottom:66px;padding-left:25px;padding-top:7px; border-top:2px solid #dadada; }
+    dt{ color:#414141; line-height:40px; height:40px;position:relative;
+        &:after{content:'\0020'; position:absolute;  width:7px; height:7px; background-color:#b5b5b5; left:-22px; top:17px;}   
+    }
+    dd{ color:#717171; line-height:18px;margin-bottom:35px; }
+}
+#faq-footer{ background-color: #F6F6F6;margin: 0 -40px;padding:60px 0 60px 52px;
+    dl{ background:url(img/faq.png) no-repeat; padding-left:80px; display:inline-block; vertical-align: top; }
+    .column2{ background-position:0 -147px; margin-left:150px; min-height:66px; height:66px;}
+    dt{ color:#ff9b00; font-size: 18px; margin-bottom:8px; }
+    dd{ color:#717171; line-height: 24px;}
+}
+

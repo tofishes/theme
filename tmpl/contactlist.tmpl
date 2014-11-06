@@ -1,0 +1,102 @@
+<li data-userId="${id}">
+    <div class="list-content">
+        <div class="user-pic">
+            <a class="multi-panel" data-route="/user/${id}">
+                <img src="${pic}" alt="${sn}" title="${sn}" />
+            </a> 
+        </div>
+        {{if km.active.platform !='renren'&&km.active.id!=id}}
+        <div class="content-r">
+           {{if following||followme}}
+                <section class="
+                {{if followme&&following}}mutualFollow {{else followme}}myFans {{else following}}following  {{/if}} hasFollow">
+                    <span>
+                        {{if km.active.platform=='sina'}}
+                            <i></i>
+                            {{if followme&&following}}互相关注{{else following}}已关注{{else}}我的粉丝{{/if}}
+                        {{else}}
+                            {{if followme&&following}}已互听{{else following}}已收听{{else}}我的收听{{/if}}
+                        {{/if}}
+                    </span>
+                    {{if following}}
+                        <button class="cancelFollow">取消</button>
+                     {{else}}
+                        <button class="addfollow-btn">关注</button>
+                    {{/if}}
+                </section>
+            {{else}}
+                <button class="follow addfollow-btn">
+                    <span>{{if km.active.platform=='sina'}}关注{{else}}收听{{/if}}</span>
+                </button>
+            {{/if}}
+        </div>
+        {{/if}}
+        <div class="content-m">
+            <a class="u-name nick multi-panel" data-route="/user/${id}"><em>${sn}</em>
+                 {{if verified}}
+                    {{if km.active.platform != 'renren'}}
+                        <i title="官方认证{{if reason}}:${reason}{{/if}}"></i>
+                    {{/if}}
+                {{/if}}
+            </a>
+           <ul>
+            {{if gender}}
+                <li class="gender">
+                 {{if gender == 'f' || gender === 2}}
+                    <span><i class="female"></i>女</span>&nbsp;${location}
+                {{else}}
+                    <span><i class="male"></i>男</span>&nbsp;${location}
+                {{/if}}
+                </li>
+            {{/if}}
+            
+            <li>
+                {{if km.active.platform !='renren'}}
+                 <span class="fansNum">
+                    {{if km.active.platform=='sina'}}关注
+                    {{else km.active.platform=='tencent'}}
+                        {{if following}}已收听{{else}}收听{{/if}}
+                    {{else km.active.platform=='renren'}}好友{{/if}}
+                    : <strong>${follows} </strong></span>|
+                <span class="fansNum">{{if km.active.platform=='sina'}}粉丝{{else}}听众{{/if}}: <strong>${fans} </strong></span>
+                {{/if}}
+                {{if km.active.platform!="tencent"}}
+                |<span class="fansNum">微博: <strong>${statuses}</strong></span>
+                {{/if}}
+            </li>
+            {{if laststatustime}}
+            <li>
+                <span class="fansNum">最后发博: <strong>${laststatustime} </strong></span>
+            </li>
+            {{/if}}
+            {{if description}}
+            <li>
+                <p class="u-info"><strong>简介：</strong>${description}</p>
+            </li>
+            {{/if}}
+             {{if tag}}
+            <li>
+                <div class="u-info">
+                    <strong>标签：</strong>${tag}
+                </div>
+            </li>
+            {{/if}}
+            {{if organization}}
+            <li>
+                
+                    <div class="u-info"><strong>公司：</strong>${organization}</div>
+               
+            </li>
+             {{/if}}
+            {{if school}}
+            <li>
+                <div class="u-info">
+                    <strong>学校：</strong>${school}
+                 </div>
+            
+            </li>
+            {{/if}}         
+           </ul>                
+        </div>
+                                
+</li>

@@ -1,0 +1,12 @@
+<script type="text/template" data-name="title">
+<li id="${pid_prefix.title + pid}" data-pid="${pid}" class="page-title">
+    <i></i><span>{{html title}}</span>
+    {{if !$data.unTrash}}
+    <a class="trash"><i class="icon icon-cuowu"></i></a>
+    {{/if}}
+</li>
+</script>
+
+<script type="text/template" data-name="con">
+<div id="${pid_prefix.page + pid}" data-pid="${pid}" class="page-container"></div>
+</script>
