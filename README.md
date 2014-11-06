@@ -30,7 +30,7 @@
 ## 可选插件
 * [gulp-header] (https://npmjs.org/package/gulp-header)&amp; [gulp-footer] (https://npmjs.org/package/gulp-footer) || [gulp-wrapper] (https://github.com/AntouanK/gulp-wrapper)
 * [gulp-load-plugins] (https://npmjs.org/package/gulp-load-plugins)
-* [gulp-rev] (https://npmjs.org/package/gulp-rev) &amp; [gulp-collect]
+* [gulp-rev] (https://npmjs.org/package/gulp-rev) &amp; [gulp-rev-collector] (https://github.com/shonny-ua/gulp-rev-collector)
 * [gulp-stylus] (https://npmjs.org/package/gulp-stylus)
 * [gulp-react] (https://npmjs.org/package/gulp-react)
 * [gulp-yuidoc] (https://github.com/jsBoot/gulp-yuidoc)
@@ -39,8 +39,8 @@
 
 
 ## 参考
-http://www.mikestreety.co.uk/blog/an-advanced-gulpjs-file
-http://blog.nodejitsu.com/npmawesome-9-gulp-plugins/
-https://phphub.org/topics/49
-http://www.dbpoo.com/getting-started-with-gulp/
-http://stefanimhoff.de/2014/gulp-tutorial-13-revisioning/
+http://www.mikestreety.co.uk/blog/an-advanced-gulpjs-file<br>
+http://blog.nodejitsu.com/npmawesome-9-gulp-plugins/<br>
+https://phphub.org/topics/49<br>
+http://www.dbpoo.com/getting-started-with-gulp/<br>
+http://stefanimhoff.de/2014/gulp-tutorial-13-revisioning/<br>
