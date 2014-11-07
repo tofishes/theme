@@ -9,7 +9,7 @@
 * 实时监控文件更改，并只处理有更改的文件 (gulp-changed || gulp-newer)
 * 文档生成
 
-### 相关插件列表(通过gulp plugins，寻找合适的gulp组件)
+### 相关插件列表(通过[gulp plugins] (http://gulpjs.com/plugins/)，寻找合适的gulp组件)
 * [gulp-size] (https://github.com/sindresorhus/gulp-size): Log输出显示文件大小
 * [gulp-concat] (https://github.com/wearefractal/gulp-concat): 合并文件
 * [gulp-imagemin] (https://github.com/sindresorhus/gulp-imagemin): 压缩图片
